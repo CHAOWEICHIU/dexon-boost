@@ -1,11 +1,11 @@
 {
   "name": "dexon-boost",
-  "version": "0.1.0",
-  "description": "dapp building components",
+  "version": "0.1.2",
+  "description": "dapp building blocks",
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "browserify ./src/index.js -o index.js && open ./index.html"
+    "build": "browserify ./src/index.js -o index.js"
   },
   "author": "Wayne Chiu",
   "license": "ISC",
