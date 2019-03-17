@@ -10970,16 +10970,39 @@ module.exports = {
 }
 
 },{"@dexon-foundation/dsolc/wrapper":3,"node-fetch":28}],65:[function(require,module,exports){
-const {
-  availableVersions,
-  loadVersion,
-} = require('./browserDSolc')
+// require('es6-shim')
+var DSolc = require('./browser-dsolc')
 
-module.exports = {
-  BrowserDSolc: {
-    availableVersions: () => availableVersions,
-    loadVersion,
+var domIsReady = (function(domIsReady) {
+  var isBrowserIeOrNot = function() {
+    return (!document.attachEvent || typeof document.attachEvent === 'undefined' ? 'not-ie' : 'ie')
   }
-}
 
-},{"./browserDSolc":64}]},{},[65]);
+  domIsReady = function(callback) {
+    if(callback && typeof callback === 'function'){
+      if(isBrowserIeOrNot() !== 'ie') {
+        document.addEventListener('DOMContentLoaded', function() {
+          return callback()
+        })
+      } else {
+        document.attachEvent('onreadystatechange', function() {
+          if(document.readyState === 'complete') {
+            return callback()
+          }
+        })
+      }
+    } else {
+      console.error('The callback is not a function!')
+    }
+  }
+
+  return domIsReady
+})(domIsReady || {});
+
+(function(document, window, domIsReady, undefined) {
+  domIsReady(function() {
+    window.BrowserDSolc = DSolc
+  })
+})(document, window, domIsReady)
+
+},{"./browser-dsolc":64}]},{},[65]);
