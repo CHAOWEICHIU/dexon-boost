@@ -55,8 +55,6 @@ ${JSON.stringify(releases, null, 2)}
           resolve(compiler)
         })
     })
-
-  
 })
 
 module.exports = {

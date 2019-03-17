@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build": "browserify ./src/index.js -o index.js"
+    "build": "browserify ./src/index.js -o ./index.js"
   },
   "author": "Wayne Chiu",
   "license": "ISC",
